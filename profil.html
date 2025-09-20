@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profil Pribadi</title>
+    <title>Profil Faqih</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
@@ -12,7 +12,8 @@
             --primary-blue: #4b6cb7;
             --secondary-purple: #182848;
             --accent-color: #6b48ff;
-            --text-color: #f8f9fa;
+            --text-color: #333;
+            --nav-bg: #ffffff;
             --glass-bg: rgba(255, 255, 255, 0.1);
             --glass-border: rgba(255, 255, 255, 0.2);
             --glass-shadow: rgba(0, 0, 0, 0.3);
@@ -32,7 +33,7 @@
             color: var(--text-color);
             line-height: 1.6;
             min-height: 100vh;
-            padding: 20px;
+            padding-top: 80px; /* Untuk memberi ruang pada fixed navbar */
             overflow-x: hidden;
         }
 
@@ -44,6 +45,71 @@
             top: 0;
             left: 0;
             z-index: -1;
+        }
+
+        /* Navbar styling */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: var(--nav-bg);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-blue);
+            text-decoration: none;
+        }
+
+        .logo-img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-right: 10px;
+            object-fit: cover;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-item {
+            margin: 0 15px;
+        }
+
+        .nav-link {
+            color: #333;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            padding: 8px 12px;
+            border-radius: 4px;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: var(--primary-blue);
+            background: rgba(75, 108, 183, 0.1);
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: #333;
         }
 
         /* Container utama */
@@ -58,6 +124,7 @@
             text-align: center;
             margin-bottom: 40px;
             position: relative;
+            padding-top: 20px;
         }
 
         .profile-container {
@@ -119,49 +186,7 @@
             max-width: 600px;
             margin-left: auto;
             margin-right: auto;
-        }
-
-        nav {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 15px;
-            margin-bottom: 40px;
-        }
-
-        .nav-btn {
-            background: var(--glass-bg);
-            border: 1px solid var(--glass-border);
-            color: var(--text-color);
-            padding: 12px 25px;
-            border-radius: 30px;
-            cursor: pointer;
-            backdrop-filter: blur(10px);
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-            font-weight: 500;
-        }
-
-        .nav-btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transition: 0.5s;
-        }
-
-        .nav-btn:hover::before {
-            left: 100%;
-        }
-
-        .nav-btn:hover, .nav-btn.active {
-            background: rgba(255, 255, 255, 0.2);
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px var(--glass-shadow);
+            color: #fff;
         }
 
         /* Section styling */
@@ -177,6 +202,7 @@
             transform: translateY(20px);
             opacity: 0;
             transition: all 0.5s ease;
+            color: #fff;
         }
 
         section.active {
@@ -368,6 +394,7 @@
             border-radius: 20px;
             backdrop-filter: blur(10px);
             border: 1px solid var(--glass-border);
+            color: #fff;
         }
 
         .social-media {
@@ -423,9 +450,36 @@
         .facebook:hover { background: #3b5998; }
 
         /* Responsiveness */
-        @media (max-width: 768px) {
+        @media (max-width: 968px) {
+            .nav-menu {
+                position: fixed;
+                top: 80px;
+                right: -100%;
+                flex-direction: column;
+                background-color: var(--nav-bg);
+                width: 80%;
+                max-width: 300px;
+                height: 100vh;
+                box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+                transition: all 0.3s ease;
+                padding-top: 20px;
+            }
+
+            .nav-menu.active {
+                right: 0;
+            }
+
+            .nav-item {
+                margin: 15px 0;
+                text-align: center;
+            }
+
+            .hamburger {
+                display: block;
+            }
+
             h1 {
-                font-size: 2.2rem;
+                font-size: 2.5rem;
             }
             
             .profile-img {
@@ -436,11 +490,6 @@
             .profile-container::before {
                 width: 170px;
                 height: 170px;
-            }
-            
-            .nav-btn {
-                padding: 10px 20px;
-                font-size: 0.9rem;
             }
             
             section {
@@ -464,21 +513,11 @@
 
         @media (max-width: 480px) {
             h1 {
-                font-size: 1.8rem;
+                font-size: 2rem;
             }
             
             .tagline {
                 font-size: 1rem;
-            }
-            
-            nav {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .nav-btn {
-                width: 100%;
-                margin-bottom: 10px;
             }
             
             section {
@@ -535,22 +574,34 @@
     <!-- Background particles -->
     <div id="particles-js"></div>
     
+    <!-- Navbar -->
+    <nav class="navbar">
+        <a href="#" class="logo">
+            <img src="https://i.ibb.co.com/39h6F1gP/Foto-Profil.jpg" alt="Logo" class="logo-img">
+            <span>Hello, i'm Faqih!</span>
+        </a>
+        
+        <ul class="nav-menu">
+            <li class="nav-item"><a href="#" class="nav-link active" data-target="about">Tentang Saya</a></li>
+            <li class="nav-item"><a href="#" class="nav-link" data-target="education">Pendidikan</a></li>
+            <li class="nav-item"><a href="#" class="nav-link" data-target="projects">Proyek</a></li>
+            <li class="nav-item"><a href="#" class="nav-link" data-target="experience">Pengalaman</a></li>
+            <li class="nav-item"><a href="#" class="nav-link" data-target="competitions">Kompetisi</a></li>
+            <li class="nav-item"><a href="#" class="nav-link" data-target="gallery">Galeri</a></li>
+        </ul>
+        
+        <button class="hamburger">
+            <i class="fas fa-bars"></i>
+        </button>
+    </nav>
+    
     <div class="container">
         <header>
             <div class="profile-container">
-                <a href="https://ibb.co.com/39h6F1gP"><img src="https://i.ibb.co.com/39h6F1gP/Foto-Profil.jpg" class="profile-img"> </a>
+                <img src="https://i.ibb.co.com/39h6F1gP/Foto-Profil.jpg" alt="Profile Picture" class="profile-img">
             </div>
             <h1>Faqih Hidayah</h1>
             <p class="tagline">Web Developer | Tech & AI Enthusiast | Creative Thinker</p>
-            
-            <nav>
-                <button class="nav-btn active" data-target="about">Tentang Saya</button>
-                <button class="nav-btn" data-target="education">Pendidikan</button>
-                <button class="nav-btn" data-target="projects">Proyek</button>
-                <button class="nav-btn" data-target="experience">Pengalaman</button>
-                <button class="nav-btn" data-target="competitions">Kompetisi</button>
-                <button class="nav-btn" data-target="gallery">Galeri</button>
-            </nav>
         </header>
         
         <main>
@@ -641,7 +692,7 @@
                 <div class="card animate-on-scroll">
                     <h3>Workshop Business Plan: Eco Swap</h3>
                     <p>Aplikasi yang mendukung keberlanjutan dan memanfaatkan barang Pre-Loved.</p>
-                    <a href="https://drive.google.com/drive/folders/1YdttBF6r2aZF-hEEfGk5l2K3J3nhLTA3?usp=drive_link" target="_blank" class="ext-link">
+                    <a href="https://drive.google.com/drive/folders/1YdttBF6r2aZF-hEEfGk5l2K3J3nhLTA3?usp=sharing" target="_blank" class="ext-link">
                         <i></i> Lihat di G-Drive
                     </a>
                 </div>
@@ -699,7 +750,7 @@
                 <div class="card animate-on-scroll">
                     <h3>Workshop Business Plan: Eco Swap <span class="badge provinsi">Kampus</span></h3>
                     <span class="year">2024</span>
-                    <p>Juara 1 Lomba BMC dengan judul "Eco Swap" Kategori Viable tingkat Prodi kampus Politeknik Caltex Riau.</p>
+                    <p>Juara Kategori Viable Lomba BMC dengan judul "Eco Swap" tingkat Prodi kampus Politeknik Caltex Riau.</p>
                 </div>
             </section>
             
@@ -781,22 +832,42 @@
         });
 
         // Fungsi untuk navigasi antar section
-        document.querySelectorAll('.nav-btn').forEach(button => {
-            button.addEventListener('click', () => {
-                // Hapus class active dari semua button dan section
-                document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                
+                // Hapus class active dari semua link dan section
+                document.querySelectorAll('.nav-link').forEach(lnk => lnk.classList.remove('active'));
                 document.querySelectorAll('section').forEach(section => section.classList.remove('active'));
                 
-                // Tambahkan class active ke button yang diklik
-                button.classList.add('active');
+                // Tambahkan class active ke link yang diklik
+                link.classList.add('active');
                 
                 // Tampilkan section yang sesuai
-                const targetSection = document.getElementById(button.dataset.target);
+                const targetSection = document.getElementById(link.dataset.target);
                 targetSection.classList.add('active');
+                
+                // Tutup menu mobile jika terbuka
+                document.querySelector('.nav-menu').classList.remove('active');
                 
                 // Scroll ke section
                 targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
             });
+        });
+
+        // Fungsi untuk toggle menu mobile
+        document.querySelector('.hamburger').addEventListener('click', () => {
+            document.querySelector('.nav-menu').classList.toggle('active');
+        });
+
+        // Tutup menu mobile ketika klik di luar menu
+        document.addEventListener('click', (e) => {
+            const isClickInsideMenu = document.querySelector('.nav-menu').contains(e.target);
+            const isClickOnHamburger = document.querySelector('.hamburger').contains(e.target);
+            
+            if (!isClickInsideMenu && !isClickOnHamburger) {
+                document.querySelector('.nav-menu').classList.remove('active');
+            }
         });
 
         // Animasi pada scroll
